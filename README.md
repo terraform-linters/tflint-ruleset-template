@@ -1,5 +1,7 @@
 # TFLint Ruleset Template
 
+**This plugin does not work Please see [here](https://github.com/terraform-linters/tflint/pull/524) for detail.**
+
 This is a template repository for building a custom ruleset. You can create a plugin repository from "Use this template".
 
 ## Requirements
