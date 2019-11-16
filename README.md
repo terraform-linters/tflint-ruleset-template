@@ -1,4 +1,4 @@
-# TFLint ruleset template
+# TFLint Ruleset Template
 
 This is a template repository for building a custom ruleset. You can create a plugin repository from "Use this template".
 
@@ -6,6 +6,16 @@ This is a template repository for building a custom ruleset. You can create a pl
 
 - TFLint v0.13.0
 - Go v1.13.x
+
+## Installation
+
+Download the plugin and place it in `~/.tflint.d/plugins/tflint-ruleset-template.so`. When using the plugin, configure as follows in `.tflint.hcl`:
+
+```hcl
+plugin "template" {
+    enabled = true
+}
+```
 
 ## Rules
 

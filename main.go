@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/terraform-linters/tflint-ruleset-template/rules"
-	"github.com/wata727/tflint/plugin"
+	"github.com/terraform-linters/tflint/plugin"
 )
 
 // Name returns the plugin name
