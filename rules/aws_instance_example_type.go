@@ -2,10 +2,9 @@ package rules
 
 import (
 	"fmt"
-	"log"
 
 	hcl "github.com/hashicorp/hcl/v2"
-	"github.com/terraform-linters/tflint/tflint"
+	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
 // AwsInstanceExampleTypeRule checks whether ...
@@ -37,20 +36,18 @@ func (r *AwsInstanceExampleTypeRule) Link() string {
 }
 
 // Check checks whether ...
-func (r *AwsInstanceExampleTypeRule) Check(runner *tflint.Runner) error {
-	log.Printf("[TRACE] Check `%s` rule for `%s` runner", r.Name(), runner.TFConfigPath())
-
+func (r *AwsInstanceExampleTypeRule) Check(runner tflint.Runner) error {
 	return runner.WalkResourceAttributes("aws_instance", "instance_type", func(attribute *hcl.Attribute) error {
 		var instanceType string
 		err := runner.EvaluateExpr(attribute.Expr, &instanceType)
 
 		return runner.EnsureNoError(err, func() error {
-			runner.EmitIssue(
+			return runner.EmitIssue(
 				r,
 				fmt.Sprintf("instance type is %s", instanceType),
 				attribute.Expr.Range(),
+				tflint.Metadata{Expr: attribute.Expr},
 			)
-			return nil
 		})
 	})
 }

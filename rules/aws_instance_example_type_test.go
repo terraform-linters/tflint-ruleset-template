@@ -4,14 +4,14 @@ import (
 	"testing"
 
 	hcl "github.com/hashicorp/hcl/v2"
-	"github.com/terraform-linters/tflint/tflint"
+	"github.com/terraform-linters/tflint-plugin-sdk/helper"
 )
 
 func Test_AwsInstanceExampleType(t *testing.T) {
 	cases := []struct {
 		Name     string
 		Content  string
-		Expected tflint.Issues
+		Expected helper.Issues
 	}{
 		{
 			Name: "issue found",
@@ -19,7 +19,7 @@ func Test_AwsInstanceExampleType(t *testing.T) {
 resource "aws_instance" "web" {
     instance_type = "t2.micro"
 }`,
-			Expected: tflint.Issues{
+			Expected: helper.Issues{
 				{
 					Rule:    NewAwsInstanceExampleTypeRule(),
 					Message: "instance type is t2.micro",
@@ -36,12 +36,12 @@ resource "aws_instance" "web" {
 	rule := NewAwsInstanceExampleTypeRule()
 
 	for _, tc := range cases {
-		runner := tflint.TestRunner(t, map[string]string{"resource.tf": tc.Content})
+		runner := helper.TestRunner(t, map[string]string{"resource.tf": tc.Content})
 
 		if err := rule.Check(runner); err != nil {
 			t.Fatalf("Unexpected error occurred: %s", err)
 		}
 
-		tflint.AssertIssues(t, tc.Expected, runner.Issues)
+		helper.AssertIssues(t, tc.Expected, runner.Issues)
 	}
 }
