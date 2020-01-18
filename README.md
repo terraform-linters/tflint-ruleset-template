@@ -1,7 +1,5 @@
 # TFLint Ruleset Template
 
-**Work in Progress. Do not use this template yet**
-
 This is a template repository for building a custom ruleset. You can create a plugin repository from "Use this template".
 
 ## Requirements
@@ -11,7 +9,7 @@ This is a template repository for building a custom ruleset. You can create a pl
 
 ## Installation
 
-Download the plugin and place it in `~/.tflint.d/plugins/tflint-ruleset-template`. When using the plugin, configure as follows in `.tflint.hcl`:
+Download the plugin and place it in `~/.tflint.d/plugins/tflint-ruleset-template` (or `./.tflint.d/plugins/tflint-ruleset-template`). When using the plugin, configure as follows in `.tflint.hcl`:
 
 ```hcl
 plugin "template" {
