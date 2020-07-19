@@ -15,6 +15,7 @@ func main() {
 				rules.NewAwsInstanceExampleTypeRule(),
 				rules.NewAwsS3BucketExampleLifecycleRuleRule(),
 				rules.NewLocalFileExampleProvisionerRule(),
+				rules.NewTerraformBackendTypeRule(),
 			},
 		},
 	})
