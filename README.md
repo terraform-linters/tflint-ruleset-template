@@ -5,7 +5,7 @@ This is a template repository for building a custom ruleset. You can create a pl
 
 ## Requirements
 
-- TFLint v0.18+
+- TFLint v0.19+
 - Go v1.14
 
 ## Installation
@@ -26,6 +26,7 @@ plugin "template" {
 |aws_s3_bucket_example_lifecycle_rule|Example rule for accessing top-level/nested blocks and attributes under blocks|ERROR|✔||
 |local_file_example_provisioner|Example rule for accessing reserved attributes/blocks such as "provisioner"|ERROR|✔||
 |terraform_backend_type|Example rule for accessing the backend configuration|ERROR|✔||
+|module_call_validity|Example rule for accessing module calls|ERROR|✔||
 
 ## Building the plugin
 
