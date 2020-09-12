@@ -2,7 +2,7 @@ package rules
 
 import (
 	hcl "github.com/hashicorp/hcl/v2"
-	"github.com/terraform-linters/tflint-plugin-sdk/terraform"
+	"github.com/terraform-linters/tflint-plugin-sdk/terraform/configs"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
@@ -36,7 +36,7 @@ func (r *LocalFileExampleProvisionerRule) Link() string {
 
 // Check checks whether ...
 func (r *LocalFileExampleProvisionerRule) Check(runner tflint.Runner) error {
-	return runner.WalkResources("local_file", func(resource *terraform.Resource) error {
+	return runner.WalkResources("local_file", func(resource *configs.Resource) error {
 
 		for _, provisioner := range resource.Managed.Provisioners {
 			if provisioner.Type != "local-exec" {

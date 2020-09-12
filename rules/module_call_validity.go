@@ -3,7 +3,7 @@ package rules
 import (
 	"github.com/hashicorp/go-version"
 	hcl "github.com/hashicorp/hcl/v2"
-	"github.com/terraform-linters/tflint-plugin-sdk/terraform"
+	"github.com/terraform-linters/tflint-plugin-sdk/terraform/configs"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
@@ -37,7 +37,7 @@ func (r *ModuleCallValidityRule) Link() string {
 
 // Check checks whether ...
 func (r *ModuleCallValidityRule) Check(runner tflint.Runner) error {
-	return runner.WalkModuleCalls(func(call *terraform.ModuleCall) error {
+	return runner.WalkModuleCalls(func(call *configs.ModuleCall) error {
 		if call.SourceAddr != "acceptable/source" {
 			return runner.EmitIssue(r, "unacceptable module source", call.SourceAddrRange)
 		}
