@@ -6,7 +6,7 @@ This is a template repository for building a custom ruleset. You can create a pl
 ## Requirements
 
 - TFLint v0.24+
-- Go v1.15
+- Go v1.16
 
 ## Installation
 
