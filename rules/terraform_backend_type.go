@@ -3,11 +3,14 @@ package rules
 import (
 	"fmt"
 
+	"github.com/terraform-linters/tflint-plugin-sdk/hclext"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
 // TerraformBackendTypeRule checks whether ...
-type TerraformBackendTypeRule struct{}
+type TerraformBackendTypeRule struct {
+	tflint.DefaultRule
+}
 
 // NewTerraformBackendTypeRule returns a new rule
 func NewTerraformBackendTypeRule() *TerraformBackendTypeRule {
@@ -25,7 +28,7 @@ func (r *TerraformBackendTypeRule) Enabled() bool {
 }
 
 // Severity returns the rule severity
-func (r *TerraformBackendTypeRule) Severity() string {
+func (r *TerraformBackendTypeRule) Severity() tflint.Severity {
 	return tflint.ERROR
 }
 
@@ -36,17 +39,37 @@ func (r *TerraformBackendTypeRule) Link() string {
 
 // Check checks whether ...
 func (r *TerraformBackendTypeRule) Check(runner tflint.Runner) error {
-	backend, err := runner.Backend()
+	content, err := runner.GetModuleContent(&hclext.BodySchema{
+		Blocks: []hclext.BlockSchema{
+			{
+				Type: "terraform",
+				Body: &hclext.BodySchema{
+					Blocks: []hclext.BlockSchema{
+						{
+							Type:       "backend",
+							LabelNames: []string{"type"},
+						},
+					},
+				},
+			},
+		},
+	}, nil)
 	if err != nil {
 		return err
 	}
-	if backend == nil {
-		return nil
+
+	for _, terraform := range content.Blocks {
+		for _, backend := range terraform.Body.Blocks {
+			err := runner.EmitIssue(
+				r,
+				fmt.Sprintf("backend type is %s", backend.Labels[0]),
+				backend.DefRange,
+			)
+			if err != nil {
+				return err
+			}
+		}
 	}
 
-	return runner.EmitIssue(
-		r,
-		fmt.Sprintf("backend type is %s", backend.Type),
-		backend.DeclRange,
-	)
+	return nil
 }
