@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/hashicorp/go-version v1.4.0
 	github.com/hashicorp/hcl/v2 v2.11.1
-	github.com/terraform-linters/tflint-plugin-sdk v0.10.0
+	github.com/terraform-linters/tflint-plugin-sdk v0.10.1
 	github.com/zclconf/go-cty v1.10.0
 )
 
