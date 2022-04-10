@@ -34,10 +34,9 @@ plugin "template" {
 |Name|Description|Severity|Enabled|Link|
 | --- | --- | --- | --- | --- |
 |aws_instance_example_type|Example rule for accessing and evaluating top-level attributes|ERROR|✔||
-|aws_s3_bucket_example_lifecycle_rule|Example rule for accessing top-level/nested blocks and attributes under blocks|ERROR|✔||
-|local_file_example_provisioner|Example rule for accessing reserved attributes/blocks such as "provisioner"|ERROR|✔||
-|terraform_backend_type|Example rule for accessing the backend configuration|ERROR|✔||
-|module_call_validity|Example rule for accessing module calls|ERROR|✔||
+|aws_s3_bucket_example_lifecycle_rule|Example rule for accessing top-level/nested blocks and attributes under the blocks|ERROR|✔||
+|google_compute_ssl_policy|Example rule with a custom rule config|WARNING|✔||
+|terraform_backend_type|Example rule for accessing other than resources|ERROR|✔||
 
 ## Building the plugin
 

@@ -8,7 +8,7 @@ import (
 )
 
 func Test_AwsS3BucketExampleLifecycleRule(t *testing.T) {
-	cases := []struct {
+	tests := []struct {
 		Name     string
 		Content  string
 		Expected helper.Issues
@@ -18,7 +18,7 @@ func Test_AwsS3BucketExampleLifecycleRule(t *testing.T) {
 			Content: `
 resource "aws_s3_bucket" "bucket" {
   lifecycle_rule {
-	enabled = false
+    enabled = false
 
     transition {
       days          = 30
@@ -28,7 +28,7 @@ resource "aws_s3_bucket" "bucket" {
 }`,
 			Expected: helper.Issues{
 				{
-					Rule:    NewAwsS3BucketExampleLifecycleRuleRule(),
+					Rule:    NewAwsS3BucketExampleLifecycleRule(),
 					Message: "`lifecycle_rule` block found",
 					Range: hcl.Range{
 						Filename: "resource.tf",
@@ -37,16 +37,16 @@ resource "aws_s3_bucket" "bucket" {
 					},
 				},
 				{
-					Rule:    NewAwsS3BucketExampleLifecycleRuleRule(),
+					Rule:    NewAwsS3BucketExampleLifecycleRule(),
 					Message: "`enabled` attribute found",
 					Range: hcl.Range{
 						Filename: "resource.tf",
-						Start:    hcl.Pos{Line: 4, Column: 12},
-						End:      hcl.Pos{Line: 4, Column: 17},
+						Start:    hcl.Pos{Line: 4, Column: 15},
+						End:      hcl.Pos{Line: 4, Column: 20},
 					},
 				},
 				{
-					Rule:    NewAwsS3BucketExampleLifecycleRuleRule(),
+					Rule:    NewAwsS3BucketExampleLifecycleRule(),
 					Message: "`transition` block found",
 					Range: hcl.Range{
 						Filename: "resource.tf",
@@ -58,15 +58,17 @@ resource "aws_s3_bucket" "bucket" {
 		},
 	}
 
-	rule := NewAwsS3BucketExampleLifecycleRuleRule()
+	rule := NewAwsS3BucketExampleLifecycleRule()
 
-	for _, tc := range cases {
-		runner := helper.TestRunner(t, map[string]string{"resource.tf": tc.Content})
+	for _, test := range tests {
+		t.Run(test.Name, func(t *testing.T) {
+			runner := helper.TestRunner(t, map[string]string{"resource.tf": test.Content})
 
-		if err := rule.Check(runner); err != nil {
-			t.Fatalf("Unexpected error occurred: %s", err)
-		}
+			if err := rule.Check(runner); err != nil {
+				t.Fatalf("Unexpected error occurred: %s", err)
+			}
 
-		helper.AssertIssues(t, tc.Expected, runner.Issues)
+			helper.AssertIssues(t, test.Expected, runner.Issues)
+		})
 	}
 }

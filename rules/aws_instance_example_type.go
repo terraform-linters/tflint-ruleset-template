@@ -39,6 +39,7 @@ func (r *AwsInstanceExampleTypeRule) Link() string {
 
 // Check checks whether ...
 func (r *AwsInstanceExampleTypeRule) Check(runner tflint.Runner) error {
+	// This rule is an example to get a top-level resource attribute.
 	resources, err := runner.GetResourceContent("aws_instance", &hclext.BodySchema{
 		Attributes: []hclext.AttributeSchema{
 			{Name: "instance_type"},
