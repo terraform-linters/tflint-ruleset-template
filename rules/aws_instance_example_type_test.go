@@ -8,7 +8,7 @@ import (
 )
 
 func Test_AwsInstanceExampleType(t *testing.T) {
-	cases := []struct {
+	tests := []struct {
 		Name     string
 		Content  string
 		Expected helper.Issues
@@ -35,13 +35,15 @@ resource "aws_instance" "web" {
 
 	rule := NewAwsInstanceExampleTypeRule()
 
-	for _, tc := range cases {
-		runner := helper.TestRunner(t, map[string]string{"resource.tf": tc.Content})
+	for _, test := range tests {
+		t.Run(test.Name, func(t *testing.T) {
+			runner := helper.TestRunner(t, map[string]string{"resource.tf": test.Content})
 
-		if err := rule.Check(runner); err != nil {
-			t.Fatalf("Unexpected error occurred: %s", err)
-		}
+			if err := rule.Check(runner); err != nil {
+				t.Fatalf("Unexpected error occurred: %s", err)
+			}
 
-		helper.AssertIssues(t, tc.Expected, runner.Issues)
+			helper.AssertIssues(t, test.Expected, runner.Issues)
+		})
 	}
 }

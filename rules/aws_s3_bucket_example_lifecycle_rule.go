@@ -5,38 +5,39 @@ import (
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
-// AwsS3BucketExampleLifecycleRuleRule checks whether ...
-type AwsS3BucketExampleLifecycleRuleRule struct {
+// AwsS3BucketExampleLifecycleRule checks whether ...
+type AwsS3BucketExampleLifecycleRule struct {
 	tflint.DefaultRule
 }
 
-// NewAwsS3BucketExampleLifecycleRuleRule returns a new rule
-func NewAwsS3BucketExampleLifecycleRuleRule() *AwsS3BucketExampleLifecycleRuleRule {
-	return &AwsS3BucketExampleLifecycleRuleRule{}
+// NewAwsS3BucketExampleLifecycleRule returns a new rule
+func NewAwsS3BucketExampleLifecycleRule() *AwsS3BucketExampleLifecycleRule {
+	return &AwsS3BucketExampleLifecycleRule{}
 }
 
 // Name returns the rule name
-func (r *AwsS3BucketExampleLifecycleRuleRule) Name() string {
+func (r *AwsS3BucketExampleLifecycleRule) Name() string {
 	return "aws_s3_bucket_example_lifecycle_rule"
 }
 
 // Enabled returns whether the rule is enabled by default
-func (r *AwsS3BucketExampleLifecycleRuleRule) Enabled() bool {
+func (r *AwsS3BucketExampleLifecycleRule) Enabled() bool {
 	return true
 }
 
 // Severity returns the rule severity
-func (r *AwsS3BucketExampleLifecycleRuleRule) Severity() tflint.Severity {
+func (r *AwsS3BucketExampleLifecycleRule) Severity() tflint.Severity {
 	return tflint.ERROR
 }
 
 // Link returns the rule reference link
-func (r *AwsS3BucketExampleLifecycleRuleRule) Link() string {
+func (r *AwsS3BucketExampleLifecycleRule) Link() string {
 	return ""
 }
 
 // Check checks whether ...
-func (r *AwsS3BucketExampleLifecycleRuleRule) Check(runner tflint.Runner) error {
+func (r *AwsS3BucketExampleLifecycleRule) Check(runner tflint.Runner) error {
+	// This rule is an example to get nested resource attributes.
 	resources, err := runner.GetResourceContent("aws_s3_bucket", &hclext.BodySchema{
 		Blocks: []hclext.BlockSchema{
 			{

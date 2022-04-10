@@ -39,6 +39,7 @@ func (r *TerraformBackendTypeRule) Link() string {
 
 // Check checks whether ...
 func (r *TerraformBackendTypeRule) Check(runner tflint.Runner) error {
+	// This rule is an example to get attributes of blocks other than resources.
 	content, err := runner.GetModuleContent(&hclext.BodySchema{
 		Blocks: []hclext.BlockSchema{
 			{
