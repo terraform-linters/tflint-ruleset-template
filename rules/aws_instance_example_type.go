@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/terraform-linters/tflint-plugin-sdk/hclext"
+	"github.com/terraform-linters/tflint-plugin-sdk/logger"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
@@ -48,6 +49,9 @@ func (r *AwsInstanceExampleTypeRule) Check(runner tflint.Runner) error {
 	if err != nil {
 		return err
 	}
+
+	// Put a log that can be output with `TFLINT_LOG=debug`
+	logger.Debug(fmt.Sprintf("Get %d instances", len(resources.Blocks)))
 
 	for _, resource := range resources.Blocks {
 		attribute, exists := resource.Body.Attributes["instance_type"]
