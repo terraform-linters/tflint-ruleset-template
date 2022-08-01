@@ -10,6 +10,8 @@ This is a template repository for building a custom ruleset. You can create a pl
 
 ## Installation
 
+TODO: This template repository does not contain release binaries, so this installation will not work. Please rewrite for your repository. See the "Building the plugin" section to get this template ruleset working.
+
 You can install the plugin with `tflint --init`. Declare a config in `.tflint.hcl` as follows:
 
 ```hcl
@@ -50,4 +52,15 @@ You can easily install the built plugin with the following:
 
 ```
 $ make install
+```
+
+You can run the built plugin like the following:
+
+```
+$ cat << EOS > .tflint.hcl
+plugin "template" {
+  enabled = true
+}
+EOS
+$ tflint
 ```
