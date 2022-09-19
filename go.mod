@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/hashicorp/hcl/v2 v2.14.0
-	github.com/terraform-linters/tflint-plugin-sdk v0.12.0
+	github.com/terraform-linters/tflint-plugin-sdk v0.13.0
 )
 
 require (
@@ -12,7 +12,7 @@ require (
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/go-cmp v0.5.8 // indirect
+	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/hashicorp/go-hclog v1.3.0 // indirect
 	github.com/hashicorp/go-plugin v1.4.5 // indirect
 	github.com/hashicorp/yamux v0.0.0-20180604194846-3520598351bb // indirect
