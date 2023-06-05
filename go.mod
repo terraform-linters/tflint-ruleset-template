@@ -3,7 +3,7 @@ module github.com/terraform-linters/tflint-ruleset-template
 go 1.20
 
 require (
-	github.com/hashicorp/hcl/v2 v2.16.2
+	github.com/hashicorp/hcl/v2 v2.17.0
 	github.com/terraform-linters/tflint-plugin-sdk v0.16.1
 )
 
