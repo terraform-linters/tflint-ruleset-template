@@ -10,6 +10,7 @@ on:
 permissions:
   contents: write
   id-token: write
+  attestations: write
 
 jobs:
   goreleaser:
@@ -35,3 +36,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
+    - uses: actions/attest-build-provenance@v1
+      with:
+        subject-path: 'dist/checksums.txt'
