@@ -36,6 +36,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
-    - uses: actions/attest-build-provenance@v1
+    - uses: actions/attest-build-provenance@v2
       with:
         subject-path: 'dist/checksums.txt'
