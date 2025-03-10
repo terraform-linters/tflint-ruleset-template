@@ -1,12 +1,12 @@
 # TFLint Ruleset Template
-[![Build Status](https://github.com/terraform-linters/tflint-ruleset-template/workflows/build/badge.svg?branch=main)](https://github.com/terraform-linters/tflint-ruleset-template/actions)
+[![Build Status](https://github.com/terraform-linters/tflint-ruleset-template/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/terraform-linters/tflint-ruleset-template/actions)
 
 This is a template repository for building a custom ruleset. You can create a plugin repository from "Use this template". See also [Writing Plugins](https://github.com/terraform-linters/tflint/blob/master/docs/developer-guide/plugins.md).
 
 ## Requirements
 
 - TFLint v0.42+
-- Go v1.23
+- Go v1.24
 
 ## Installation
 
